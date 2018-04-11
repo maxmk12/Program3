@@ -22,6 +22,68 @@ public class Programming3 {
     public final int INF = 99999;
     private int V, E;
     
+    private String getChar(int i){
+        if(i > 0 && i < 27){
+            return String.valueOf((char)(i+64));
+        }
+        else{
+            return null;
+        }
+    }
+    
+    public void print(int p[], int n){
+        System.out.print("----");
+        for(int h = 1; h < p.length -1; h++){
+            System.out.print("------");
+        }
+        System.out.println();
+        for (int i = 1; i < n; i++){
+            String v = getChar(p[i] + 1);
+            String t = getChar(i + 1);
+            System.out.print("|" + v + "" + t + "|  ");
+        }
+        System.out.print("\n" + "----");
+        for(int s = 1; s < p.length -1; s++){
+            System.out.print("------");
+        }
+    }
+    
+    public void PrimJarnik(int[][] g){ 
+        V = g[0].length;
+        int root[] = new int[V];
+        int key[] = new int [V];
+        Boolean S[] = new Boolean[V];
+        for (int i = 0; i < V; i++){
+            key[i] = Integer.MAX_VALUE;
+            S[i] = false;
+        }
+        key[0] = 0;
+        root[0] = -1;
+        for (int count = 0; count < V-1; count++){
+            int u = m(key, S);
+            S[u] = true;
+            for (int v = 0; v < V; v++){
+                if (g[u][v]!=0 && S[v] == false && g[u][v] <  key[v]){
+                    root[v]  = u;
+                    key[v] = g[u][v];
+                }
+            }
+        }
+        print(root, V);
+    }
+    
+        
+    public int m(int k[], Boolean ar[]){
+        int m = Integer.MAX_VALUE, min_index=-1;
+        for (int v = 0; v < V; v++){
+            if (m > k[v] && ar[v] == false){
+                m = k[v];
+                min_index = v;
+            }
+        }
+        return min_index;
+    }
+    
     public static void main(String[] args){
         Path file = Paths.get("input.txt");
         Charset chars = Charset.forName("US-ASCII");
@@ -93,8 +155,14 @@ public class Programming3 {
                 }              
             }           
         }
+        
+        Programming3 g = new Programming3();
+        
         System.out.println("Through Kruskal's Algorithm: ");
         p.Kruskal();
+        System.out.println("\n \n" + "Through Prim-Jarnik's Algorithm: ");
+        g.PrimJarnik(adjM);
+        System.out.println("\n");
         
     }
 }
