@@ -1,0 +1,7 @@
+A,B,C,D,E
+0,50,inf,80,inf
+inf,0,60,90,inf
+inf,inf,0,inf,40
+inf,inf,20,0,70
+inf,50,inf,inf,0
+

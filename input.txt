@@ -1,0 +1,7 @@
+A,B,C,D,E,F
+inf,1,inf,inf,inf,inf
+inf,5,inf,1,11,inf
+inf,inf,inf,inf,inf,inf
+5,inf,inf,inf,3,inf
+inf,inf,inf,11,inf,7
+inf,inf,3,inf,inf,inf
