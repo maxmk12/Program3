@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package programming3;
 
 import java.io.BufferedReader;
@@ -21,15 +16,6 @@ import java.nio.file.Paths;
 public class Programming3 {
     public final int INF = 99999;
     private int V, E;
-   
-    private String getChar(int i){
-        if(i > 0 && i < 27){
-            return String.valueOf((char)(i+64));
-        }
-        else{
-            return null;
-        }
-    }
     
     public void FWA(int g[][]){
         V = g[0].length;
