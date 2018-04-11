@@ -21,6 +21,79 @@ import java.nio.file.Paths;
 public class Programming3 {
     public final int INF = 99999;
     private int V, E;
+   
+    private String getChar(int i){
+        if(i > 0 && i < 27){
+            return String.valueOf((char)(i+64));
+        }
+        else{
+            return null;
+        }
+    }
+    
+    public void FWA(int g[][]){
+        V = g[0].length;
+        int d[][] = new int[V][V];
+        int i, j, k;
+        for (i = 0; i < V; i++){
+            for (j = 0; j < V; j++){
+                d[i][j] = g[i][j];
+            }  
+        }
+        for (k = 0; k < V; k++){
+            for (i = 0; i < V; i++){
+                for (j = 0; j < V; j++){
+                    if (d[i][k] + d[k][j] < d[i][j]){
+                        d[i][j] = d[i][k] + d[k][j];
+                        printSolution(d);
+                    }
+                }
+            }
+        }
+    }
+    
+        public void printSolution(int[][] d){
+        System.out.println();
+        System.out.print("-----");
+        for(int yy = 0; yy < V-1; yy++){
+            System.out.print("-------");
+        }
+        System.out.println();
+        String[] Alphabet = new String[26];
+        for(int uijg = 0; uijg < Alphabet.length; uijg++){
+            Alphabet[uijg] = getChar(uijg + 1);
+        }
+        for(int uij = 0; uij < V; uij++){
+            System.out.print("| " + Alphabet[uij] + " |  ");
+            if(uij == V-1){
+                System.out.println();
+            }
+        }
+        for (int i=0; i<V; ++i)
+        {
+            for (int j=0; j<V; ++j)
+            {
+                if (d[i][j]==INF)
+                    System.out.print("|INF|  ");
+                else
+                    if(d[i][j] < 10){
+                        System.out.print("| " + d[i][j] + " |  ");
+                    }
+                    else if(10 <= d[i][j] && d[i][j] < 100){
+                        System.out.print("|" + d[i][j] + " |  ");
+                    }
+                    else{
+                        System.out.print("|" + d[i][j] + "|  ");
+                    }
+                    
+            }
+            System.out.println();
+        }
+        System.out.print("-----");
+        for(int yy = 0; yy < V-1; yy++){
+            System.out.print("-------");
+        }
+    }
     
     private String getChar(int i){
         if(i > 0 && i < 27){
@@ -162,6 +235,9 @@ public class Programming3 {
         p.Kruskal();
         System.out.println("\n \n" + "Through Prim-Jarnik's Algorithm: ");
         g.PrimJarnik(adjM);
+        System.out.println("\n");
+        System.out.println("\n \n" + "Floyd-Warshall's Algorithm: ");
+        g.FWA(adjM);
         System.out.println("\n");
         
     }
